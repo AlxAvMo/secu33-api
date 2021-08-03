@@ -1,2 +1,2 @@
 # secu33-api
- API para manejar las consultas de la aplicación tecnicapp
+ API que maneja las consultas de la aplicación tecnicapp
