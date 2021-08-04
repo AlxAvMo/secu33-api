@@ -36,8 +36,8 @@ class Auth extends conexion{
             $pass = parent::encriptar($pass);
             $datos = $this->obtenerUsuario($usuario);
             if($datos){
-                if($pass == $datos[0]['contraseña']){
-                    $datos[0]['contraseña'] = null;
+                if($pass == $datos[0]['password']){
+                    $datos[0]['password'] = null;
                     if($datos[0]['idestatus'] == 1){
                         $token = $this->insertarToken($datos[0]['idusuario']);
                         if($token){
@@ -61,7 +61,8 @@ class Auth extends conexion{
     }
 
     public function obtenerUsuario($user){
-        $query = "SELECT idusuario,contraseña,correo,idestatus,tipo_usuario,nombre,apepat,apemat,sexo,domicilio,curp,foto FROM usuario WHERE idusuario = '$user'";
+        $query = "SELECT idusuario,contraseña AS password,correo,idestatus,tipo_usuario,nombre,apepat,apemat,sexo,domicilio,curp,foto FROM usuario WHERE idusuario = '$user'";
+        $query = utf8_decode($query);
         $datos = parent::getRegistros($query);
         if(isset($datos[0]['idusuario'])){
             return $datos;
